@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 
 module.exports = {
@@ -17,29 +18,29 @@ module.exports = {
   migrationStorage: "sequelize",
   migrationStorageTableName: "migrations",
 };
+
+
 /* {
   "development": {
-    "username": "venecol_admin",
-    "password": "Test!123",
-    "database": "venecol",
+    "username": "root",
+    "password": null,
+    "database": "database_development",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "3306"
+    "dialect": "mysql"
   },
   "test": {
-    "username": "mayoristas_venecol",
-    "password": "password2020*.-",
-    "database": "mayoristas_venecol",
+    "username": "root",
+    "password": null,
+    "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "5006"
+    "dialect": "mysql"
   },
   "production": {
-    "username": "mayoristas_venecol",
-    "password": "password2020*.-",
-    "database": "mayoristas_venecol",
+    "username": "root",
+    "password": null,
+    "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "5006"
+    "dialect": "mysql"
   }
-} */
+}
+ */

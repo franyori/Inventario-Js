@@ -1,15 +1,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const { sequelize } = require("./app/models/index");
+const { sequelize } = require("./models/index");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const compression = require("compression");
+var cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config({path:'.env'});
 
 //configuracion
 app.set("port", process.env.PORT || 3030);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
