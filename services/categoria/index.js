@@ -4,7 +4,7 @@ const {
 const dbModel = Categoria
 
 async function store(params) {
-    return dbModel.create({
+    return await dbModel.create({
             ...params,
         })
         .catch(error => {
@@ -23,39 +23,41 @@ async function getAll(filters) {
     })
 }
 
+
 async function getOne(filters) {
-    return dbModel.findOne({
-            where: {
-                ...filters
-            },
-            include: "user"
-        })
-        .catch(error => {
-            return Promise.reject(error)
-        })
+    return await Categoria.findOne({
+        where: {
+            ...filters
+        }
+    }).catch(error => {
+        return Promise.reject(error)
+    })
 }
 
 async function update(params, filters) {
-    return dbModel.update(params, {
-            where: {
-                ...filters
-            }
-        })
-        .catch(error => {
-            return Promise.reject(error)
-        })
+    return Categoria.update(params, {
+        where: {
+            ...filters
+        }
+    }).catch(error => {
+        return Promise.reject(error)
+    })
+
 }
 
+
 async function destroy(filters) {
-    dbModel.destroy({
-            where: {
-                ...filters
-            }
-        })
-        .catch(error => {
-            return Promise.reject(error)
-        })
+
+    Categoria.destroy({
+        where: {
+            ...filters
+        }
+    }).catch(error => {
+        return Promise.reject(error)
+    })
 }
+
+
 
 module.exports = {
     store,
