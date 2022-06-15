@@ -1,7 +1,7 @@
 const { cliente } = require('../../models/index')
 
 async function store (params) {
-  return await cliente
+  return cliente
     .create({
       ...params
     })
@@ -10,7 +10,7 @@ async function store (params) {
     })
 }
 async function getAll (filters) {
-  return await cliente
+  return cliente
     .findAll({
       where: { ...filters }
     })
@@ -20,7 +20,7 @@ async function getAll (filters) {
 }
 
 async function update (params, filters) {
-  return await cliente
+  return cliente
     .update(params, {
       where: { ...filters }
     })
@@ -28,8 +28,18 @@ async function update (params, filters) {
       return Promise.reject(error)
     })
 }
+async function update2 (params, filters) {
+  try {
+    await cliente.update(params, {
+      where: { ...filters }
+    })
+  } catch (error) {
+    throw error
+  }
+}
+
 async function getOne (filters) {
-  return await cliente
+  return cliente
     .findOne({
       where: { ...filters }
     })
@@ -39,7 +49,7 @@ async function getOne (filters) {
 }
 
 async function destroy (filters) {
-  return await cliente
+  return cliente
     .destroy({
       where: { ...filters }
     })
@@ -53,5 +63,6 @@ module.exports = {
   getAll,
   getOne,
   update,
+  update2,
   destroy
 }

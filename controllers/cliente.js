@@ -53,21 +53,20 @@ class clienteController {
         res.status(400).send(err)
       })
   }
-  /* async update2 (req, res, next) {
-      await clienteService
-      .update(req.body, {
+  
+  async update2 (req, res, next) {
+    try {
+      await clienteService.update2(req.body, {
         id: req.params.id
       })
-      await clienteService.getOne({
+      let data = await clienteService.getOne({
         id: req.params.id
       })
-      .then((upt) => {
-        return res.status(200).json(upt)
-      })
-      .catch(err => {
-        res.status(400).send(err)
-      })
-  } */
+      res.status(200).json(data)
+    } catch (err) {
+      res.status(400).send(err)
+    }
+  }
 
   delete = (req, res, next) => {
     return clienteService

@@ -21,7 +21,7 @@ router.put(
     return clienteValidator.exists(id)
   }),
   validator.returnErrors,
-  controller.update
+  controller.update2
 )
 router.delete(
   '/delete/:id',
