@@ -1,49 +1,46 @@
-'use strict';
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('clientes', {
+    await queryInterface.createTable('Personas', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tipo_client: {
+      nacionalidad_per: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      cedula_client: {
+      tipo_per: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      documento_per: {
         allowNull: false,
         type: Sequelize.INTEGER,
         unique: true,
         isNumeric: true
       },
-      nombre_client: {
+      tipo_per: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      apellido_client: {
+      nombres_per: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      nac_client: {
+      apellidos_per: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      tlf_client: {
-        allowNull: false,
+      correo_per: {
         type: Sequelize.STRING
       },
-      email_client: {
-        allowNull: false,
+      tlf_per: {
         type: Sequelize.STRING
       },
-      razonsocial_client: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      dircc_client: {
-        allowNull: false,
+      direccion_per: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -54,9 +51,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('clientes');
+    await queryInterface.dropTable('Personas')
   }
-};
+}
