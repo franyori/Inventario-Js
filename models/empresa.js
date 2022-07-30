@@ -15,11 +15,13 @@ module.exports = (sequelize, DataTypes) => {
     {
       nombre_empre: DataTypes.STRING,
       rif_empre: DataTypes.NUMBER,
+      representante_empre : DataTypes.STRING,
       direccion_empre: DataTypes.STRING,
       tlf_local_empre: DataTypes.STRING,
       tlf_celular_empre: DataTypes.STRING,
       correo_empre: DataTypes.STRING,
-      porltal_web_empre: DataTypes.STRING
+      porltal_web_empre: DataTypes.STRING,
+      tipo_empre: DataTypes.STRING
     },
     {
       sequelize,

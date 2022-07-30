@@ -43,6 +43,12 @@ module.exports = {
       direccion_per: {
         type: Sequelize.STRING
       },
+      fecha_nac_per: {
+        type: Sequelize.STRING
+      },
+      genero_per: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

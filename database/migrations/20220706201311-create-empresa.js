@@ -19,6 +19,9 @@ module.exports = {
         isNumeric: true,
         allowNull: false
       },
+      representante_empre: {
+        type: Sequelize.STRING
+      },
       direccion_empre: {
         type: Sequelize.STRING
       },
@@ -32,6 +35,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       porltal_web_empre: {
+        type: Sequelize.STRING
+      },
+      tipo_empre: {
         type: Sequelize.STRING
       },
       createdAt: {

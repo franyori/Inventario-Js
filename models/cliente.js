@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       personaId: DataTypes.INTEGER,
       status_client: DataTypes.STRING,
-      detalle_client: DataTypes.STRING
+      detalle_client: DataTypes.STRING,
+      tipo_client: DataTypes.STRING
     },
     {
       sequelize,
