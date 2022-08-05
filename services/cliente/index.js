@@ -1,7 +1,7 @@
-const { cliente } = require('../../models/index')
+const { Cliente } = require('../../models/index')
 
 async function store (params) {
-  return cliente
+  return Cliente
     .create({
       ...params
     })
@@ -10,9 +10,11 @@ async function store (params) {
     })
 }
 async function getAll (filters) {
-  return cliente
+  return Cliente
     .findAll({
-      where: { ...filters }
+      include:[{
+        association:"Persona"
+      }]
     })
     .catch(error => {
       return Promise.reject(error)
@@ -20,7 +22,7 @@ async function getAll (filters) {
 }
 
 async function update (params, filters) {
-  return cliente
+  return Cliente
     .update(params, {
       where: { ...filters }
     })
@@ -30,7 +32,7 @@ async function update (params, filters) {
 }
 async function update2 (params, filters) {
   try {
-    await cliente.update(params, {
+    await Cliente.update(params, {
       where: { ...filters }
     })
   } catch (error) {
@@ -39,7 +41,7 @@ async function update2 (params, filters) {
 }
 
 async function getOne (filters) {
-  return cliente
+  return Cliente
     .findOne({
       where: { ...filters }
     })
@@ -49,7 +51,7 @@ async function getOne (filters) {
 }
 
 async function destroy (filters) {
-  return cliente
+  return Cliente
     .destroy({
       where: { ...filters }
     })

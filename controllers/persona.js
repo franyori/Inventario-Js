@@ -20,6 +20,7 @@ class personaController {
         res.status(200).json(persona)
       })
       .catch(err => {
+        console.log(err);
         res.status(400).send(err)
       })
   }

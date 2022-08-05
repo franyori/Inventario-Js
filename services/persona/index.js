@@ -9,7 +9,7 @@ async function store (params) {
 
 async function getAll (filters) {
   return Persona
-    .finAll({
+    .findAll({
       where: { ...filters }
     })
     .catch(error => {
