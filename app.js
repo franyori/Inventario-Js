@@ -15,7 +15,7 @@ dotenv.config({
 var indexRouter = require('./routes/index')
 var categoriaRouter = require('./routes/categoria')
 var clienteRouter = require('./routes/cliente')
-
+var personaRouter = require('./routes/persona')
 //configuracion
 app.set('port', process.env.PORT || 3030)
 app.use(express.json())
@@ -40,7 +40,7 @@ app.use(cookieParser())
 app.use('/', indexRouter)
 app.use('/categoria', categoriaRouter)
 app.use('/cliente', clienteRouter)
-
+app.use('/persona', personaRouter)
 //Rutas use
 
 app.listen(app.get('port'), 'localhost', function () {
