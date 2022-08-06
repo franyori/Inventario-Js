@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index')
 var categoriaRouter = require('./routes/categoria')
 var clienteRouter = require('./routes/cliente')
 var personaRouter = require('./routes/persona')
+var empresaRouter = require('./routes/empresa')
 //configuracion
 app.set('port', process.env.PORT || 3030)
 app.use(express.json())
@@ -41,6 +42,7 @@ app.use('/', indexRouter)
 app.use('/categoria', categoriaRouter)
 app.use('/cliente', clienteRouter)
 app.use('/persona', personaRouter)
+app.use('/empresa', empresaRouter)
 //Rutas use
 
 app.listen(app.get('port'), 'localhost', function () {
