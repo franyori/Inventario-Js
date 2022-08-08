@@ -1,24 +1,29 @@
-const { Empresa } = require('../../models/index')
+const { Proveedor } = require('../../models/index')
 
 async function store (params) {
-  return Empresa.create({
-    ...params
-  }).catch(error => {
+  return Proveedor.create({ ...params }).catch(error => {
+    console.log(error)
     return Promise.reject(error)
   })
 }
 
 async function getAll (filters) {
-  return Empresa.findAll({
-    where: { ...filters }
+  return Proveedor.findAll({
+    include: [
+      {
+        association: 'Persona'
+      },
+      { 
+        association: 'Empresa'
+      }
+    ]
   }).catch(error => {
-    //console.log(error)
     return Promise.reject(error)
   })
 }
 
 async function getOne (filters) {
-  return Empresa.findOne({
+  return Proveedor.findOne({
     where: { ...filters }
   }).catch(error => {
     return Promise.reject(error)
@@ -26,7 +31,7 @@ async function getOne (filters) {
 }
 
 async function update (params, filters) {
-  return Empresa.update(params, {
+  return Proveedor.update(params, {
     ...filters
   }).catch(error => {
     return Promise.reject(error)
@@ -34,7 +39,7 @@ async function update (params, filters) {
 }
 
 async function destroy (filters) {
-  return Empresa.destroy({
+  return Proveedor.destroy({
     ...filters
   }).catch(error => {
     return Promise.reject(error)
@@ -46,6 +51,5 @@ module.exports = {
   getAll,
   getOne,
   update,
-  destroy,
-
+  destroy
 }

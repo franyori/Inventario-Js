@@ -1,51 +1,38 @@
-const { Empresa } = require('../../models/index')
+const { Bodega } = require('../../models/index')
 
 async function store (params) {
-  return Empresa.create({
-    ...params
-  }).catch(error => {
+  return Bodega.create({ ...params }).catch(error => {
     return Promise.reject(error)
   })
 }
 
 async function getAll (filters) {
-  return Empresa.findAll({
-    where: { ...filters }
-  }).catch(error => {
-    //console.log(error)
+  return Bodega.findAll({ where: { ...filters } }).catch(error => {
     return Promise.reject(error)
   })
 }
 
 async function getOne (filters) {
-  return Empresa.findOne({
-    where: { ...filters }
-  }).catch(error => {
+  return Bodega.findOne({ where: { ...filters } }).catch(error => {
     return Promise.reject(error)
   })
 }
 
 async function update (params, filters) {
-  return Empresa.update(params, {
-    ...filters
-  }).catch(error => {
+  return Bodega.update(params, { where: { ...filters } }).catch(error => {
     return Promise.reject(error)
   })
 }
 
 async function destroy (filters) {
-  return Empresa.destroy({
-    ...filters
-  }).catch(error => {
+  return Bodega.destroy({ ...filters }).catch(error => {
     return Promise.reject(error)
   })
 }
-
 module.exports = {
   store,
   getAll,
   getOne,
   update,
-  destroy,
-
+  destroy
 }

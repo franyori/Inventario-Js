@@ -1,4 +1,4 @@
-const { empresaService } = require('../services/empresa')
+const  empresaService  = require('../services/empresa/index')
 
 class empresaController {
   create = (req, res, next) => {
