@@ -2,6 +2,7 @@ const { Bodega } = require('../../models/index')
 
 async function store (params) {
   return Bodega.create({ ...params }).catch(error => {
+    console.log(error)
     return Promise.reject(error)
   })
 }

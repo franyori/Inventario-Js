@@ -18,6 +18,7 @@ var clienteRouter = require('./routes/cliente')
 var personaRouter = require('./routes/persona')
 var empresaRouter = require('./routes/empresa')
 var proveedorRouter = require('./routes/proveedor')
+var bodegaRouter = require('./routes/bodega')
 //configuracion
 app.set('port', process.env.PORT || 3030)
 app.use(express.json())
@@ -45,6 +46,7 @@ app.use('/cliente', clienteRouter)
 app.use('/persona', personaRouter)
 app.use('/empresa', empresaRouter)
 app.use('/proveedor', proveedorRouter)
+app.use('/bodega', bodegaRouter)
 //Rutas use
 
 app.listen(app.get('port'), 'localhost', function () {

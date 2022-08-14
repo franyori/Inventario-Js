@@ -8,6 +8,7 @@ class bodegaController {
         return res.status(200).json(newbodega)
       })
       .catch(err => {
+        console.log(err)
         res.status(400).send(err)
       })
   }

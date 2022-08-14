@@ -40,6 +40,7 @@ async function update(params, filters) {
             ...filters
         }
     }).catch(error => {
+        //console.log(error)
         return Promise.reject(error)
     })
 
