@@ -27,7 +27,9 @@ async function getOne (filters) {
 
 async function update (params, filters) {
   return Empresa.update(params, {
-    ...filters
+    where: {
+      ...filters
+    }
   }).catch(error => {
     return Promise.reject(error)
   })
@@ -35,8 +37,11 @@ async function update (params, filters) {
 
 async function destroy (filters) {
   return Empresa.destroy({
-    ...filters
+    where: {
+      ...filters
+    }
   }).catch(error => {
+    console.log(error)
     return Promise.reject(error)
   })
 }
@@ -46,6 +51,5 @@ module.exports = {
   getAll,
   getOne,
   update,
-  destroy,
-
+  destroy
 }
