@@ -26,7 +26,7 @@ async function update (params, filters) {
 }
 
 async function destroy (filters) {
-  return Bodega.destroy({ ...filters }).catch(error => {
+  return Bodega.destroy({ where: { ...filters } }).catch(error => {
     return Promise.reject(error)
   })
 }

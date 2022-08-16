@@ -8,7 +8,7 @@ class personaController {
         return res.status(200).json(newpersona)
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
         res.status(400).send(err)
       })
   }
@@ -20,7 +20,7 @@ class personaController {
         res.status(200).json(persona)
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
         res.status(400).send(err)
       })
   }
@@ -52,6 +52,19 @@ class personaController {
         res.status(200).json(persona)
       })
       .catch(err => {
+        console.log(err)
+        res.status(400).send(err)
+      })
+  }
+
+  delete = (req, res, next) => {
+    return personaService
+      .destroy({ id: req.params.id })
+      .then(() => {
+        res.status(200).json({ success: 'Persona Eliminada' })
+      })
+      .catch(err => {
+        console.log(err)
         res.status(400).send(err)
       })
   }
