@@ -13,7 +13,7 @@ async function getAll (filters) {
       {
         association: 'Persona'
       },
-      { 
+      {
         association: 'Empresa'
       }
     ]
@@ -26,14 +26,13 @@ async function getOne (filters) {
   return Proveedor.findOne({
     where: { ...filters }
   }).catch(error => {
+    console.log(error)
     return Promise.reject(error)
   })
 }
 
 async function update (params, filters) {
-  return Proveedor.update(params, {
-    ...filters
-  }).catch(error => {
+  return Proveedor.update(params, { where: { ...filters } }).catch(error => {
     return Promise.reject(error)
   })
 }

@@ -33,6 +33,7 @@ class proveedorController {
         return res.status(200).json(newProveedor)
       })
       .catch(err => {
+        console.log(err)
         res.status(400).send(err)
       })
   }
@@ -49,6 +50,17 @@ class proveedorController {
       })
       .then(newProveedor => {
         return res.status(200).json(newProveedor)
+      })
+      .catch(err => {
+        res.status(400).send(err)
+      })
+  }
+
+  delete = (req, res, next) => {
+    return proveedorServices
+      .destroy({ id: req.params.id })
+      .then(() => {
+        return res.status(200).json({ success: 'Proveedor Eliminado' })
       })
       .catch(err => {
         res.status(400).send(err)
