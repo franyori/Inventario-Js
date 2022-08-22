@@ -13,14 +13,14 @@ class unidadMedidaController {
   }
 
   list = (req, res, next) => {
-    return unidadMedidaService.getAll().then(newUnidad => {
-      return res
-        .status(200)
-        .json(newUnidad)
-        .catch(err => {
-          res.status(400).send(err)
-        })
-    })
+    return unidadMedidaService
+      .getAll()
+      .then(newUnidad => {
+        return res.status(200).json(newUnidad)
+      })
+      .catch(err => {
+        res.status(400).send(err)
+      })
   }
 
   show = (req, res, next) => {
@@ -36,7 +36,7 @@ class unidadMedidaController {
 
   update = (req, res, next) => {
     return unidadMedidaService
-      .update(params, { id: req.params.id })
+      .update(req.body, { id: req.params.id })
       .then(() => {
         return unidadMedidaService.getOne({ id: req.params.id })
       })

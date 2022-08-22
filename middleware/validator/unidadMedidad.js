@@ -1,4 +1,4 @@
-const unidadMedidaService = require('../../services/bodega')
+const unidadMedidaService = require('../../services/unidadMedida')
 
 class unidadMedidadValidator {
     exists = id => {
