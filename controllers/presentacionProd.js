@@ -41,7 +41,7 @@ class presentacionProdController {
         return presentacionProdServices.getOne({ id: req.params.id })
       })
       .then(newpresentacion => {
-        res.status(200).json(newpresentacion)
+      return  res.status(200).json(newpresentacion)
       })
       .catch(err => {
         res.status(400).send(err)

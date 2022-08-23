@@ -49,7 +49,7 @@ class personaController {
         })
       })
       .then(persona => {
-        res.status(200).json(persona)
+      return  res.status(200).json(persona)
       })
       .catch(err => {
         console.log(err)
