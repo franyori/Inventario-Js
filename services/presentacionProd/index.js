@@ -7,7 +7,13 @@ async function store (params) {
 }
 
 async function getAll (filters) {
-  return PresentacionProd.findAll({ where: { ...filters } }).catch(error => {
+  return PresentacionProd.findAll({
+    include: [
+      {
+        association: 'UnidadMedidad'
+      }
+    ]
+  }).catch(error => {
     return Promise.reject(error)
   })
 }

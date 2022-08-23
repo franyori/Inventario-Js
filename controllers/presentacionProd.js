@@ -14,7 +14,7 @@ class presentacionProdController {
 
   list = (req, res, next) => {
     return presentacionProdServices
-      .getAll({ id: req.params.id })
+      .getAll()
       .then(newpresentacion => {
         res.status(200).json(newpresentacion)
       })
@@ -36,7 +36,7 @@ class presentacionProdController {
 
   update = (req, res, next) => {
     return presentacionProdServices
-      .update(params, { where: { ...filters } })
+      .update(req.body, { id: req.params.id })
       .then(() => {
         return presentacionProdServices.getOne({ id: req.params.id })
       })
