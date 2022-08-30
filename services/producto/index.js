@@ -1,22 +1,20 @@
 const { Producto } = require('../../models/index')
 
 async function store (params) {
-  cantidad_actual = (params.cantidad_inicial - params.cantidad_reservda)
   return Producto.create(
     {
       ...params,
       Stock: [
         {
-          cantidad_inicial: params.cantidad_inicial,
-          cantidad_actual: cantidad_actual,
-          cantidad_reservda: params.cantidad_reservda,
+          cantidad_inicial: parseInt(params.cantidad_inicial),
+          cantidad_actual: parseInt(params.cantidad_inicial),
+          cantidad_reservda: parseInt(params.cantidad_reservda),
           productoId: ''
         }
       ]
     },
     {
-      include: [{ all: true, nested: true }],
-
+      include: [{ all: true, nested: true }]
     }
   ).catch(error => {
     //console.log(error)
