@@ -37,7 +37,7 @@ async function getOne (filters) {
 }
 async function getId (params) {
   return Stock.findOne({
-    where: { productoId: { [Op.eq]:params.id } },
+    where: { productoId: { [Op.eq]: params.id } },
     raw: true,
     include: [
       {
@@ -50,8 +50,11 @@ async function getId (params) {
   })
 }
 
-async function update (params, filters) {
-  return Stock.update(params, { where: { ...filters } }).catch(error => {
+async function update (params) {
+  return Stock.update(params, {
+    where: { productoId: params.productoId }
+  }).catch(error => {
+    console.log(error)
     return Promise.reject(error)
   })
 }

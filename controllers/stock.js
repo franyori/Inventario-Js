@@ -53,12 +53,13 @@ class stockController {
         id: req.params.id
       })
       .then(() => {
-        return stockService.getOne({ id: req.params.id })
+        return stockService.getOne({ productoId: req.params.id })
       })
       .then(newadd => {
         return res.status(200).json(newadd)
       })
       .catch(err => {
+        console.log(err)
         res.status(400).send(err)
       })
   }
