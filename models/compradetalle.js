@@ -36,7 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       descuentoTotal_detalle: DataTypes.FLOAT,
       subtotal_detalle: DataTypes.FLOAT,
       total_detalle: DataTypes.FLOAT,
-      total_detalle: DataTypes.FLOAT
     },
     {
       sequelize,
