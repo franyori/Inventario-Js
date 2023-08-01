@@ -24,6 +24,7 @@ var presentacionProdRouter = require('./routes/presentacionProd')
 var productoRouter = require('./routes/producto')
 var stockRouter = require('./routes/stock')
 var formaPagoRouter = require('./routes/formaPago')
+
 //configuracion
 app.set('port', process.env.PORT || 3030)
 app.use(express.json())
@@ -42,7 +43,6 @@ app.use(cors())
 app.use(compression())
 app.use(helmet())
 app.use(cookieParser())
-//configuracion
 
 //Rutas use
 app.use('/', indexRouter)
@@ -57,8 +57,9 @@ app.use('/presentacion',presentacionProdRouter)
 app.use('/producto',productoRouter)
 app.use('/stock',stockRouter)
 app.use('/formapago',formaPagoRouter)
-//Rutas use
 
+
+//Inicializacion del Server
 app.listen(app.get('port'), 'localhost', function () {
   console.log('Corriendos Servidor Puerto 3030')
 

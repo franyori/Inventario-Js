@@ -39,7 +39,7 @@ async function update (params, filters) {
 
 async function destroy (filters) {
   return Proveedor.destroy({
-    ...filters
+    where: { ...filters }
   }).catch(error => {
     return Promise.reject(error)
   })
