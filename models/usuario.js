@@ -23,8 +23,21 @@ module.exports = (sequelize, DataTypes) => {
     {
       personaId: DataTypes.INTEGER,
       rolId: DataTypes.INTEGER,
-      usuario: DataTypes.STRING,
-      password: DataTypes.STRING,
+      usuario: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: {
+            args: [6, 255],
+            msg: 'la contraseña debe tener al menos 6 caracteres'
+          }
+        }
+      },
       status_usuario: DataTypes.STRING,
       detalle_usuario: DataTypes.STRING
     },

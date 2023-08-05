@@ -25,6 +25,8 @@ var productoRouter = require('./routes/producto')
 var stockRouter = require('./routes/stock')
 var formaPagoRouter = require('./routes/formaPago')
 var rolRouter = require('./routes/rol')
+var usuarioRouter = require('./routes/usuario')
+
 
 
 //configuracion
@@ -60,6 +62,8 @@ app.use('/producto',productoRouter)
 app.use('/stock',stockRouter)
 app.use('/formapago',formaPagoRouter)
 app.use('/rol',rolRouter)
+app.use('/usuario',usuarioRouter)
+
 
 
 
