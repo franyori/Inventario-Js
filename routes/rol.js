@@ -5,16 +5,16 @@ var rolValidator = require('../middleware/validator/rol')
 var rolSchema = require('../middleware/schema/rol')
 const { body,checkSchema, param } = require('express-validator')
 const validator = require('../middleware/validator') // esta funcion es del paquete express-validator nos devuelve mensae de eroor si lo ay
-//const categoriaValidator = require('../middleware/validator/categoria')// aqui es una comprobacion de que n exist otro ID igual
+const verifyToken = require("../middleware/verifyToken")
 
-router.get('/list', controller.list)
+router.get('/list', verifyToken,controller.list)
 router.post(
   '/add',checkSchema(rolSchema),
   validator.returnErrors,
   controller.create
 )
 router.get(
-  '/show/:id',
+  '/show/:id',verifyToken,
   param('id').custom(id => {
     return rolValidator.exists(id)
   }),
@@ -22,7 +22,7 @@ router.get(
   controller.show
 )
 router.put(
-  '/update/:id',
+  '/update/:id',verifyToken,
   param('id').custom(id => {
     return rolValidator.exists(id)
   }),
@@ -31,7 +31,7 @@ router.put(
 )
 
 router.delete(
-  '/delete/:id',
+  '/delete/:id',verifyToken,
   param('id').custom(id => {
     return rolValidator.exists(id)
   }),

@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+var path = require('path');
 const cors = require('cors')
 const { sequelize } = require('./models/index')
 const bodyParser = require('body-parser')
@@ -27,7 +28,7 @@ var formaPagoRouter = require('./routes/formaPago')
 var rolRouter = require('./routes/rol')
 var usuarioRouter = require('./routes/usuario')
 
-
+const authRouter = require('./routes/auth');
 
 //configuracion
 app.set('port', process.env.PORT || 3030)
@@ -47,9 +48,11 @@ app.use(cors())
 app.use(compression())
 app.use(helmet())
 app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas use
 app.use('/', indexRouter)
+app.use('/auth', authRouter)
 app.use('/categoria', categoriaRouter)
 app.use('/cliente', clienteRouter)
 app.use('/persona', personaRouter)

@@ -3,18 +3,22 @@ var router = express.Router()
 var controller = require('../controllers/formaPago')
 var formaPagoValidator = require('../middleware/validator/formaPago')
 var formaPagoSchema = require('../middleware/schema/formaPago')
-const { body,checkSchema, param } = require('express-validator')
+const {
+  body,
+  checkSchema,
+  param
+} = require('express-validator')
 const validator = require('../middleware/validator') // esta funcion es del paquete express-validator nos devuelve mensae de eroor si lo ay
-//const categoriaValidator = require('../middleware/validator/categoria')// aqui es una comprobacion de que n exist otro ID igual
+const verifyToken = require("../middleware/verifyToken")
 
-router.get('/list', controller.list)
+router.get('/list', verifyToken, controller.list)
 router.post(
-  '/add',checkSchema(formaPagoSchema),
+  '/add', checkSchema(formaPagoSchema),
   validator.returnErrors,
   controller.create
 )
 router.get(
-  '/show/:id',
+  '/show/:id', verifyToken,
   param('id').custom(id => {
     return formaPagoValidator.exists(id)
   }),
@@ -22,7 +26,7 @@ router.get(
   controller.show
 )
 router.put(
-  '/update/:id',
+  '/update/:id', verifyToken,
   param('id').custom(id => {
     return formaPagoValidator.exists(id)
   }),
@@ -31,7 +35,7 @@ router.put(
 )
 
 router.delete(
-  '/delete/:id',
+  '/delete/:id', verifyToken,
   param('id').custom(id => {
     return formaPagoValidator.exists(id)
   }),

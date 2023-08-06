@@ -3,18 +3,24 @@ var router = express.Router()
 var controller = require('../controllers/cliente')
 var clienteValidator = require('../middleware/validator/cliente')
 var clienteSchema = require('../middleware/schema/cliente')
-const { body, checkSchema, param } = require('express-validator')
+const verifyToken = require("../middleware/verifyToken")
+
+const {
+  body,
+  checkSchema,
+  param
+} = require('express-validator')
 const validator = require('../middleware/validator')
 
 router.get('/list', controller.list)
 router.post(
-  '/add',
+  '/add', verifyToken,
   checkSchema(clienteSchema),
   validator.returnErrors,
   controller.create
 )
 router.get(
-  '/show/:id',
+  '/show/:id', verifyToken,
   param('id').custom(id => {
     return clienteValidator.exists(id)
   }),
@@ -22,7 +28,7 @@ router.get(
   controller.show
 )
 router.put(
-  '/update/:id',
+  '/update/:id', verifyToken,
   param('id').custom(id => {
     return clienteValidator.exists(id)
   }),
@@ -30,7 +36,7 @@ router.put(
   controller.update2
 )
 router.delete(
-  '/delete/:id',
+  '/delete/:id', verifyToken,
   param('id').custom(id => {
     return clienteValidator.exists(id)
   }),
