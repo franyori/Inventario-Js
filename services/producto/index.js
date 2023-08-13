@@ -1,32 +1,33 @@
-const { Producto } = require('../../models/index')
+const {
+  Producto
+} = require('../../models/index')
 
-async function store (params) {
-  return Producto.create(
-    {
-      ...params,
-      Stock: [
-        {
-          cantidad_inicial: parseInt(params.cantidad_inicial),
-          cantidad_actual: parseInt(params.cantidad_inicial),
-          cantidad_reservda: parseInt(params.cantidad_reservda),
-          productoId: ''
-        }
-      ]
-    },
-    {
-      include: [{ all: true, nested: true }]
-    }
-  ).catch(error => {
+async function store(params) {
+  return Producto.create({
+    ...params,
+    Stock: [{
+      cantidad_inicial: parseInt(params.cantidad_inicial),
+      cantidad_actual: parseInt(params.cantidad_inicial),
+      cantidad_reservda: parseInt(params.cantidad_reservda),
+      productoId: ''
+    }]
+  }, {
+    include: [{
+      all: true,
+      nested: true
+    }]
+  }).catch(error => {
     //console.log(error)
     return Promise.reject(error)
   })
 }
 
-async function getAll (filters) {
+async function getAll(filters) {
   return Producto.findAll({
-    where: { ...filters },
-    include: [
-      {
+    where: {
+      ...filters
+    },
+    include: [{
         association: 'Categoria'
       },
       {
@@ -41,11 +42,14 @@ async function getAll (filters) {
   })
 }
 
-async function getOne (filters) {
+async function getOne(filters) {
   return Producto.findOne({
-    where: { ...filters },
-    include: [
-      {
+    where: {
+      ...filters
+    },
+    raw: true,
+
+    include: [{
         association: 'Categoria'
       },
       {
@@ -53,6 +57,9 @@ async function getOne (filters) {
       },
       {
         association: 'PresentacionProd'
+      },
+      {
+        association: 'Stock'
       }
     ]
   }).catch(error => {
@@ -60,14 +67,22 @@ async function getOne (filters) {
   })
 }
 
-async function update (params, filters) {
-  return Producto.update(params, { where: { ...filters } }).catch(error => {
+async function update(params, filters) {
+  return Producto.update(params, {
+    where: {
+      ...filters
+    }
+  }).catch(error => {
     return Promise.reject(error)
   })
 }
 
-async function destroy (filters) {
-  return Producto.destroy({ where: { ...filters } }).catch(error => {
+async function destroy(filters) {
+  return Producto.destroy({
+    where: {
+      ...filters
+    }
+  }).catch(error => {
     return Promise.reject(error)
   })
 }
