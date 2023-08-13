@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+var path = require('path');
 const cors = require('cors')
 const { sequelize } = require('./models/index')
 const bodyParser = require('body-parser')
@@ -23,6 +24,12 @@ var unidadMedidaRouter = require('./routes/unidadMedidad')
 var presentacionProdRouter = require('./routes/presentacionProd')
 var productoRouter = require('./routes/producto')
 var stockRouter = require('./routes/stock')
+var formaPagoRouter = require('./routes/formaPago')
+var rolRouter = require('./routes/rol')
+var usuarioRouter = require('./routes/usuario')
+
+const authRouter = require('./routes/auth');
+
 //configuracion
 app.set('port', process.env.PORT || 3030)
 app.use(express.json())
@@ -41,10 +48,11 @@ app.use(cors())
 app.use(compression())
 app.use(helmet())
 app.use(cookieParser())
-//configuracion
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas use
 app.use('/', indexRouter)
+app.use('/auth', authRouter)
 app.use('/categoria', categoriaRouter)
 app.use('/cliente', clienteRouter)
 app.use('/persona', personaRouter)
@@ -55,8 +63,14 @@ app.use('/unidad',unidadMedidaRouter)
 app.use('/presentacion',presentacionProdRouter)
 app.use('/producto',productoRouter)
 app.use('/stock',stockRouter)
-//Rutas use
+app.use('/formapago',formaPagoRouter)
+app.use('/rol',rolRouter)
+app.use('/usuario',usuarioRouter)
 
+
+
+
+//Inicializacion del Server
 app.listen(app.get('port'), 'localhost', function () {
   console.log('Corriendos Servidor Puerto 3030')
 
