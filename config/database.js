@@ -3,8 +3,8 @@ require("dotenv").config();
 
 module.exports = {
   //configuracion de la base de datos
-  username: process.env.BD_USERNAME || "franyori",
-  password: process.env.BD_PASSWORD || "franyori",
+  username: process.env.BD_USERNAME || "root",
+  password: process.env.BD_PASSWORD || "",
   database: process.env.BD_DATABASE || "inventario",
   host: process.env.BD_HOST || "localhost",
   dialect: process.env.BD_DIALECT || "mysql",
