@@ -37,7 +37,22 @@ module.exports = (sequelize, DataTypes) => {
       utilidad_prod: DataTypes.STRING,
       bodegaId: DataTypes.INTEGER,
       categoriaId: DataTypes.INTEGER,
-      presentacionProdId: DataTypes.INTEGER
+      presentacionProdId: DataTypes.INTEGER,
+      precio_bcv: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0,
+      allowNull: false
+      },
+      precio_promedio: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
+        allowNull: false
+      },
+      precio_paralelo: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
+        allowNull: false
+      }
     },
     {
       sequelize,
