@@ -35,6 +35,17 @@ class tasaCambioController {
       })
   }
 
+  findOne = async (req, res, next) => {
+    return tasaCambioService
+      .findOne()
+      .then(findTasa => {
+        return res.status(200).json(findTasa)
+      })
+      .catch(err => {
+        res.status(400).send(err)
+      })
+  }
+
   update = (req, res, next) => {
     return tasaCambioService
       .update(req.body, { id: req.params.id })

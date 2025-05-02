@@ -1,8 +1,8 @@
 var express = require('express')
 var router = express.Router()
 var controller = require('../controllers/tasaCambio')
-var formaPagoValidator = require('../middleware/validator/tasaCambio')
-var formaPagoSchema = require('../middleware/schema/tasaCambio')
+var tasaCambioValidator = require('../middleware/validator/tasaCambio')
+var tasaCambioSchema = require('../middleware/schema/tasaCambio')
 const {
   body,
   checkSchema,
@@ -13,14 +13,14 @@ const verifyToken = require("../middleware/verifyToken")
 
 router.get('/list', verifyToken, controller.list)
 router.post(
-  '/add', checkSchema(formaPagoSchema),
+  '/add', checkSchema(tasaCambioSchema),
   validator.returnErrors,
   controller.create
 )
 router.get(
   '/show/:id', verifyToken,
   param('id').custom(id => {
-    return formaPagoValidator.exists(id)
+    return tasaCambioValidator.exists(id)
   }),
   validator.returnErrors,
   controller.show
@@ -28,7 +28,7 @@ router.get(
 router.put(
   '/update/:id', verifyToken,
   param('id').custom(id => {
-    return formaPagoValidator.exists(id)
+    return tasaCambioValidator.exists(id)
   }),
   validator.returnErrors,
   controller.update
@@ -37,10 +37,16 @@ router.put(
 router.delete(
   '/delete/:id', verifyToken,
   param('id').custom(id => {
-    return formaPagoValidator.exists(id)
+    return tasaCambioValidator.exists(id)
   }),
   validator.returnErrors,
   controller.delete
+)
+
+router.get(
+  '/findOne', verifyToken,
+  validator.returnErrors,
+  controller.findOne
 )
 
 module.exports = router

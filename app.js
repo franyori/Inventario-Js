@@ -27,6 +27,7 @@ var stockRouter = require('./routes/stock')
 var formaPagoRouter = require('./routes/formaPago')
 var rolRouter = require('./routes/rol')
 var usuarioRouter = require('./routes/usuario')
+var tasaCambioRouter = require('./routes/tasaCambio')
 
 const authRouter = require('./routes/auth');
 
@@ -66,7 +67,7 @@ app.use('/stock',stockRouter)
 app.use('/formapago',formaPagoRouter)
 app.use('/rol',rolRouter)
 app.use('/usuario',usuarioRouter)
-
+app.use('/tasaCambio',tasaCambioRouter)
 
 
 

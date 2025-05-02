@@ -18,6 +18,12 @@ async function getOne (filters) {
   })
 }
 
+async function findOne () {
+  return TasaCambio.findOne({order: [['createdAt', 'DESC']]}).catch(error => {
+    return Promise.reject(error)
+  })
+}
+
 async function update (params, filters) {
   return TasaCambio.update(params, { where: { ...filters } }).catch(error => {
     return Promise.reject(error)
@@ -35,5 +41,6 @@ module.exports = {
   getAll,
   getOne,
   update,
-  destroy
+  destroy,
+  findOne
 }
