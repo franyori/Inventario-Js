@@ -14,6 +14,11 @@ router.post(
   validator.returnErrors,
   controller.create
 )
+router.post(
+  '/changePrices',verifyToken,
+  validator.returnErrors,
+  controller.changePrices
+)
 router.get(
   '/show/:id',verifyToken,
   param('id').custom(id => {

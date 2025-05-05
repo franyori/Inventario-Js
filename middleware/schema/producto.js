@@ -1,16 +1,11 @@
 const { check, body, checkSchema } = require('express-validator')
 
 const checkproducto = {
-  bodegaId: {
+  /* categoria: {
     notEmpty: true,
     isNumeric: true,
     errorMessage: 'Debe ser Numerico o Esta vacio'
-  },
-  categoriaId: {
-    notEmpty: true,
-    isNumeric: true,
-    errorMessage: 'Debe ser Numerico o Esta vacio'
-  },
+  }, */
   presentacionProdId: {
     notEmpty: true,
     isNumeric: true,

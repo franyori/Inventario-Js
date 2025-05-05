@@ -27,12 +27,7 @@ async function getAll(filters) {
     where: {
       ...filters
     },
-    include: [{
-        association: 'Categoria'
-      },
-      {
-        association: 'Bodega'
-      },
+    include: [
       {
         association: 'PresentacionProd'
       }
@@ -77,6 +72,35 @@ async function update(params, filters) {
   })
 }
 
+async function changePriceAll(params) {
+  try {
+    const productos = await Producto.findAll();
+
+    const updates = productos.map(producto => {
+      const nuevosPrecios = {
+        precio_bcv: producto.precio_prod * params.precio_bcv,
+        precio_paralelo: producto.precio_prod * params.precio_paralelo,
+        precio_promedio: producto.precio_prod * params.precio_promedio
+      };
+
+      return Producto.update(nuevosPrecios, {
+        where: { id: producto.id } 
+      });
+    });
+
+    const results = await Promise.all(updates);
+    const totalActualizados = results.reduce((sum, result) => sum + result[0], 0);
+
+    return { 
+      success: true,
+      message: `${totalActualizados} productos actualizados.`
+    };
+
+  } catch (error) {
+    throw error; 
+  }
+}
+
 async function destroy(filters) {
   return Producto.destroy({
     where: {
@@ -92,5 +116,6 @@ module.exports = {
   getAll,
   getOne,
   update,
-  destroy
+  destroy,
+  changePriceAll
 }

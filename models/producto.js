@@ -8,14 +8,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      Producto.belongsTo(models.Bodega, {
-        foreignKey: 'bodegaId',
-        as: 'Bodega'
-      })
-      Producto.belongsTo(models.Categoria, {
-        foreignKey: 'categoriaId',
-        as: 'Categoria'
-      })
       Producto.belongsTo(models.PresentacionProd, {
         foreignKey: 'presentacionProdId',
         as: 'PresentacionProd'
@@ -35,8 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       codigo_prod: DataTypes.INTEGER,
       impuesto_prod: DataTypes.INTEGER,
       utilidad_prod: DataTypes.STRING,
-      bodegaId: DataTypes.INTEGER,
-      categoriaId: DataTypes.INTEGER,
+      categoria: DataTypes.JSON,
       presentacionProdId: DataTypes.INTEGER,
       precio_bcv: {
       type: DataTypes.FLOAT,

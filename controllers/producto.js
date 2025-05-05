@@ -12,6 +12,17 @@ class productoController {
       })
   }
 
+  changePrices = (req, res, next) => {
+    return productoService
+      .changePriceAll(req.body)
+      .then(changeProductsAll => {
+        return res.status(200).json(changeProductsAll)
+      })
+      .catch(err => {
+        res.status(400).send(err)
+      })
+  }
+
   list = (req, res, next) => {
     return productoService
       .getAll()
